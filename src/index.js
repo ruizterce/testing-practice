@@ -18,4 +18,17 @@ function capitalize(string) {
   return string.slice(0, i) + string[i].toUpperCase() + string.slice(i + 1);
 }
 
-export { capitalize };
+// Reverse a string
+function reverseString(string) {
+  if (typeof string !== 'string') {
+    throw new Error('Argument is not a string');
+  }
+
+  // Iterate to reversedly add the string characters to reversedString
+  let reversedString = '';
+  for (let i = 0; i < string.length; i++) {
+    reversedString += string.charAt(string.length - 1 - i);
+  }
+  return reversedString;
+}
+export { capitalize, reverseString };

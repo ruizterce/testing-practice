@@ -1,7 +1,21 @@
-import './style.css';
+// Capitalize the first character of a string
+function capitalize(string) {
+  if (typeof string !== 'string') {
+    throw new Error('Argument is not a string');
+  }
+  // Skip whitespaces at the start of the string
+  let i = 0;
+  while (i < string.length && string[i] === ' ') {
+    i++;
+  }
 
-export function greet() {
-  return 'Hello, Webpack!';
+  // If the string is empty or contains only whitespace, return it
+  if (i >= string.length) {
+    return string;
+  }
+
+  // Capitalize the first non-whitespace character
+  return string.slice(0, i) + string[i].toUpperCase() + string.slice(i + 1);
 }
 
-console.log(greet());
+export { capitalize };

@@ -1,4 +1,4 @@
-import { capitalize, reverseString, calculator } from './index';
+import { capitalize, reverseString, calculator, cesarCipher } from './index';
 
 // Capitalize
 
@@ -96,4 +96,32 @@ test('calculator.divide 10 / 0 to throw "Cannot divide by zero"', () => {
   expect(() => {
     calculator.divide(10, 0);
   }).toThrow("Can't divide by zero");
+});
+
+// cesarCipher
+test(' returns a string with characters shifted by shiftFactor', () => {
+  expect(cesarCipher('abc', 3)).toBe('def');
+  expect(cesarCipher('def', 4)).toBe('hij');
+});
+
+test('cesarCipher wraps from z to a', () => {
+  expect(cesarCipher('xyz', 3)).toBe('abc');
+});
+
+test('cesarCipher preserves case', () => {
+  expect(cesarCipher('HeLLo', 3)).toBe('KhOOr');
+});
+
+test('cesarCipher preserves punctuation and spaces', () => {
+  expect(cesarCipher('Hello, World!', 3)).toBe('Khoor, Zruog!');
+});
+
+test('cesarCipher handles large shift factors', () => {
+  expect(cesarCipher('abc', 26)).toBe('abc');
+  expect(cesarCipher('abc', 52)).toBe('abc');
+});
+
+test('cesarCipher handles negative shift factors', () => {
+  expect(cesarCipher('abc', -3)).toBe('xyz');
+  expect(cesarCipher('HeLLo', -3)).toBe('EbIIl');
 });

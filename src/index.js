@@ -51,4 +51,33 @@ const calculator = {
   }
 };
 
-export { capitalize, reverseString, calculator };
+// Cesar cipher - Swap each character to the one shifted by n = shiftFactor characters in the alphabet
+function cesarCipher(string, shiftFactor) {
+  let cipheredString = '';
+  for (let i = 0; i < string.length; i++) {
+    let char = string[i];
+    // Lowercase
+    if (char.match(/[a-z]/)) {
+      cipheredString += shiftChar(char, shiftFactor, 97);
+    }
+    // Uppercase
+    else if (char.match(/[A-Z]/)) {
+      cipheredString += shiftChar(char, shiftFactor, 65);
+    }
+    // Not a letter
+    else {
+      cipheredString += char;
+    }
+  }
+  return cipheredString;
+}
+
+// Auxiliary - Convert character to Unicode value, shift by shiftFactor, wrap around and convert back to character
+function shiftChar(char, shiftFactor, baseCharCode) {
+  let newCharCode = (char.charCodeAt(0) - baseCharCode + shiftFactor) % 26;
+  // Wrap around if negative
+  if (newCharCode < 0) newCharCode += 26;
+  return String.fromCharCode(newCharCode + baseCharCode);
+}
+
+export { capitalize, reverseString, calculator, cesarCipher };

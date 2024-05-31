@@ -1,4 +1,4 @@
-import { capitalize, reverseString } from './index';
+import { capitalize, reverseString, calculator } from './index';
 
 // Capitalize
 
@@ -73,4 +73,27 @@ test('reverseString throws an error if argument is not a string', () => {
   expect(() => reverseString(null)).toThrow('Argument is not a string');
   expect(() => reverseString({})).toThrow('Argument is not a string');
   expect(() => reverseString(undefined)).toThrow('Argument is not a string');
+});
+
+// calculator
+test('calculator.add 5 + 3 to equal 8', () => {
+  expect(calculator.add(5, 3)).toBe(8);
+});
+
+test('calculator.subtract 10 - 4 to equal 6', () => {
+  expect(calculator.subtract(10, 4)).toBe(6);
+});
+
+test('calculator.multiply 6 * 2 to equal 12', () => {
+  expect(calculator.multiply(6, 2)).toBe(12);
+});
+
+test('calculator.divide 20 / 5 to equal 4', () => {
+  expect(calculator.divide(20, 5)).toBe(4);
+});
+
+test('calculator.divide 10 / 0 to throw "Cannot divide by zero"', () => {
+  expect(() => {
+    calculator.divide(10, 0);
+  }).toThrow("Can't divide by zero");
 });

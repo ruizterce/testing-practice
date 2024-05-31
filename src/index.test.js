@@ -1,4 +1,4 @@
-import { capitalize, reverseString, calculator, cesarCipher } from './index';
+import { capitalize, reverseString, calculator, cesarCipher, analyzeArray } from './index';
 
 // Capitalize
 
@@ -124,4 +124,50 @@ test('cesarCipher handles large shift factors', () => {
 test('cesarCipher handles negative shift factors', () => {
   expect(cesarCipher('abc', -3)).toBe('xyz');
   expect(cesarCipher('HeLLo', -3)).toBe('EbIIl');
+});
+
+// analyzeArray
+test('analyzeArray analyzes array correctly', () => {
+  expect(analyzeArray([1, 8, 3, 4, 2, 6])).toEqual({
+    average: 4,
+    min: 1,
+    max: 8,
+    length: 6
+  });
+});
+
+test('analyzeArray handles single element array', () => {
+  expect(analyzeArray([5])).toEqual({
+    average: 5,
+    min: 5,
+    max: 5,
+    length: 1
+  });
+});
+
+test('analyzeArray handles array with negative numbers', () => {
+  expect(analyzeArray([-1, -8, -3, -4, -2, -6])).toEqual({
+    average: -4,
+    min: -8,
+    max: -1,
+    length: 6
+  });
+});
+
+test('analyzeArray handles array with positive and negative numbers', () => {
+  const result = analyzeArray([1, -2, 3, -4, 5, -6]);
+  expect(result).toEqual({
+    average: -0.5,
+    min: -6,
+    max: 5,
+    length: 6
+  });
+});
+
+test('analyzeArray throws error for empty array', () => {
+  expect(() => analyzeArray([])).toThrow('Input must be a non-empty array');
+});
+
+test('analyzeArray throws error for non-array input', () => {
+  expect(() => analyzeArray('not an array')).toThrow('Input must be a non-empty array');
 });

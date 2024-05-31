@@ -80,4 +80,23 @@ function shiftChar(char, shiftFactor, baseCharCode) {
   return String.fromCharCode(newCharCode + baseCharCode);
 }
 
-export { capitalize, reverseString, calculator, cesarCipher };
+function analyzeArray(array) {
+  if (!Array.isArray(array) || array.length === 0) {
+    throw new Error('Input must be a non-empty array');
+  }
+
+  const sum = array.reduce((acc, curr) => acc + curr, 0);
+  const average = sum / array.length;
+  const min = Math.min(...array);
+  const max = Math.max(...array);
+  const length = array.length;
+
+  return {
+    average,
+    min,
+    max,
+    length
+  };
+}
+
+export { capitalize, reverseString, calculator, cesarCipher, analyzeArray };
